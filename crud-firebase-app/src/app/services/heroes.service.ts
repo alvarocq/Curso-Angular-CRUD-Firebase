@@ -51,11 +51,28 @@ export class HeroesService {
           return res;
         })
       )
+      // ./fin pipe
+
+    }
+    // ./fin actualizarHeroe
+
+  //Función GET un héroe en concreto
+  getHeroe( key$:string ){
+    let url = `${ this.HeroeUrl}/${ key$ }.json`;
+    return this.http.get( url )
+    .pipe(
+        map( res =>{
+        console.log(res);
+        //El <Heroe> indica que queremos que la respuesta sea de tipo heroe
+        return <Heroe>(res);
+      })
+    )
+    // ./fin pipe
 
   }
 
 
 
 
-
 }
+// ./fin export class HeroesService

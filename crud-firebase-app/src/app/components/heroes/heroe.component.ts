@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from "@angular/router";
 import { Heroe } from "../../interfaces/heroe.interface";
 import {HeroesService} from "../../services/heroes.service";
@@ -11,7 +11,7 @@ import {HeroesService} from "../../services/heroes.service";
 })
 export class HeroeComponent implements OnInit {
 
-  heroe:Heroe = {
+    heroe:Heroe = {
     nombre:"",
     bio:"",
     casa:"Marvel",
@@ -28,6 +28,10 @@ export class HeroeComponent implements OnInit {
         .subscribe( parametros =>{
               console.log(parametros);
               this.id = parametros['id'];
+              if(this.id !== "nuevo"){
+                this._heroesService.getHeroe( this.id )
+                    .subscribe( respuesta => this.heroe = respuesta)
+              }
               } )
   }
 
@@ -67,6 +71,15 @@ export class HeroeComponent implements OnInit {
 
   }
 // /.fin guardar
+
+  agregarNuevo( forma:NgForm){
+    this.router.navigate(['/heroe', 'nuevo']);
+
+    forma.reset({
+      casa:"Marvel"
+    });
+
+  }
 
 }
 // /.fin export Class HeroeComponent
