@@ -26,4 +26,17 @@ export class HeroesComponent implements OnInit {
   ngOnInit() {
   }
 
+  borraHeroe(key$:string){
+    this._heroesService.borrarHeroe(key$)
+        .subscribe(respuesta => {
+          console.log(respuesta);
+            if( respuesta ) {
+              console.error(respuesta);
+            }else{
+              //todo bien: eliminamos el objeto sin necesidad de recargar la página.
+              delete this.heroes[key$];
+            }
+        })
+  }
+
 }

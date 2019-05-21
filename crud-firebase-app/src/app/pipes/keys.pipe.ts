@@ -1,7 +1,9 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'keys'
+  name: 'keys',
+  //para que esté pendiente del ciclo de cambio (cuando eliminamos un héroe)
+  pure:false,
 })
 export class KeysPipe implements PipeTransform {
 

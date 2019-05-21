@@ -84,6 +84,25 @@ export class HeroesService {
     )
     // ./fin pipe
 
+
+  }
+
+
+
+  //Función borrar héroe
+  borrarHeroe ( key$:string ){
+
+    let url =`${ this.HeroeUrl}/${ key$ }.json`;
+    return this.http.delete( url )
+    .pipe(
+        map( res =>{
+        console.log(res);
+        //El <Heroe> indica que queremos que la respuesta sea de tipo heroe
+        return res;
+      })
+    )
+    // ./fin pipe
+
   }
 
 
