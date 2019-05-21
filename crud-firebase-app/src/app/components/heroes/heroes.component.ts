@@ -9,7 +9,7 @@ import { HeroesService } from 'src/app/services/heroes.service';
 })
 export class HeroesComponent implements OnInit {
 
-  heroes:any[] = [];
+  heroes:any;
 
   constructor(private _heroesService:HeroesService) {
 
