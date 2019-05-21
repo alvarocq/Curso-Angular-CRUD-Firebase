@@ -25,6 +25,7 @@
             <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Casa</th>
+            <th scope="col">Biografía</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
@@ -34,6 +35,10 @@
             <td>{{heroes[k].nombre}}</td>
             <td>{{heroes[k].casa}}</td>
             <td>{{heroes[k].bio}}</td>
+            <td>
+              <button [routerLink]="['/heroe', k]"
+                      type="button" class="btn btn-outline-success">Editar</button>
+            </td>
           </tr>
         </tbody>
 
