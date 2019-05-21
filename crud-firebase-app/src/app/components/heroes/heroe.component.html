@@ -8,12 +8,13 @@
 <div class="row">
   <div class="col-md-12">
 
-    <form>
+    <form (ngSubmit)="guardar()" #forma="ngForm">
 
       <div class="form-group">
         <label>Nombre</label>
-        <input
-              type="text" name=""
+        <input [(ngModel)]="heroe.nombre"
+              name="nombre"
+              type="text"
               class="form-control"
               placeholder="Nombre del héroe"
               required>
@@ -21,7 +22,9 @@
 
       <div class="form-group">
           <label>Casa</label>
-          <select class="form-control" name="">
+          <select [(ngModel)]="heroe.casa"
+                  name="casa"
+                  class="form-control">
             <option value="Marvel">Marvel</option>
             <option value="DC">DC</option>
           </select>
@@ -30,19 +33,21 @@
       <div class="form-group">
         <label>Bio</label>
         <textarea
-              type="text" name=""
+              [(ngModel)]="heroe.bio"
+              name="bio"
+              type="text"
               class="form-control"
-              placeholder="Bio del héroe"
-              required>
+              placeholder="Bio del héroe">
         </textarea>
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-outline-primary">
+        <button [disabled]="!forma.valid"
+                type="submit" class="btn btn-outline-primary">
           Guardar cambios
         </button>
       </div>
-
+      <p>Formulario válido (nombre requerido): {{forma.valid}}</p>
     </form>
 
   </div>

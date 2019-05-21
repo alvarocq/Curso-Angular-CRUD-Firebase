@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { Heroe } from "../../interfaces/heroe.interface";
 
 @Component({
   selector: 'app-heroe',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeroeComponent implements OnInit {
 
+  heroe:Heroe = {
+    nombre:"",
+    bio:"",
+    casa:"Marvel",
+
+  }
+
   constructor() { }
 
   ngOnInit() {
   }
+
+  guardar(){
+    console.log(this.heroe);
+  }
+
 
 }
