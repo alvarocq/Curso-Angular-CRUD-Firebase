@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { Heroe } from "../../interfaces/heroe.interface";
 import {HeroesService} from "../../services/heroes.service";
 
@@ -18,8 +18,18 @@ export class HeroeComponent implements OnInit {
 
   }
 
+  nuevo:boolean = false;
+  id:string;
+
   constructor(private _heroesService:HeroesService,
-              private router:Router){ }
+              private router:Router,
+              private route:ActivatedRoute){
+      this.route.params
+        .subscribe( parametros =>{
+              console.log(parametros);
+              this.id = parametros['id'];
+              } )
+  }
 
   ngOnInit() {
   }
@@ -27,15 +37,36 @@ export class HeroeComponent implements OnInit {
   guardar(){
     console.log(this.heroe);
 
-    this._heroesService.nuevoHeroe( this.heroe )
-        .subscribe ( data =>{
-              var id_heroe:any=data;
-              id_heroe = id_heroe.name;
-              console.log(id_heroe);
-              this.router.navigate(['/heroe',id_heroe])
-        },
-        error=> console.error(error));
-  }
+    if( this.id == "nuevo"){
+      //Insertar nuevo héroe (método post)
+      this._heroesService.nuevoHeroe( this.heroe )
+          .subscribe ( data =>{
+                var id_heroe:any=data;
+                id_heroe = id_heroe.name;
+                console.log(id_heroe);
+                this.router.navigate(['/heroe',id_heroe])
+          },
+          error=> console.error(error));
+          console.log("Creado héroe en firebase");
+    }else{
+     //Actualizando nuevo héroe (método put)
+     this._heroesService.actualizarHeroe( this.heroe, this.id )
+         .subscribe ( data =>{
 
+               console.log("el id es: " + this.id);
+               this.router.navigate(['/heroe',this.id])
+         },
+         error=> console.error(error));
+         console.log("Actualizado héroe en firebase");
+         console.log("la id es: " + this.id );
+
+    }
+
+
+
+
+  }
+// /.fin guardar
 
 }
+// /.fin export Class HeroeComponent
