@@ -47,6 +47,9 @@
         </tbody>
 
       </table>
+      <div *ngIf="(heroes | keys).length === 0 && loading === false "
+        class="alert alert-info" role="alert">
+        <strong>No hay</strong> registros que mostrar
     </div>
   </div>
 </div>

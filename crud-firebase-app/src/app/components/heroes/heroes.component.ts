@@ -10,6 +10,7 @@ import { HeroesService } from 'src/app/services/heroes.service';
 export class HeroesComponent implements OnInit {
 
   heroes:any;
+  loading:boolean = true;
 
   constructor(private _heroesService:HeroesService) {
 
@@ -18,7 +19,7 @@ export class HeroesComponent implements OnInit {
 
         console.log(data);
         this.heroes = data;
-
+        this.loading = false;
       } )
 
 }
