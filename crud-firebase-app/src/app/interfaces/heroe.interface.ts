@@ -3,5 +3,4 @@ export interface Heroe{
   bio:string;
   casa:string;
   key$?:string;
-  id$?:any;
 }
