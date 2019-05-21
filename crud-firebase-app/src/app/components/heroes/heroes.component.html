@@ -29,17 +29,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>Mark</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+          <tr *ngFor="let k of heroes | keys; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{heroes[k].nombre}}</td>
+            <td>{{heroes[k].casa}}</td>
+            <td>{{heroes[k].bio}}</td>
           </tr>
         </tbody>
 

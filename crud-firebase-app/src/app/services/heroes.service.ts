@@ -71,6 +71,21 @@ export class HeroesService {
 
   }
 
+  //Función GET todos los héroes en concreto
+  getHeroes(){
+
+    return this.http.get( this.HeroesUrl )
+    .pipe(
+        map( res =>{
+        console.log(res);
+        //El <Heroe> indica que queremos que la respuesta sea de tipo heroe
+        return res;
+      })
+    )
+    // ./fin pipe
+
+  }
+
 
 
 
